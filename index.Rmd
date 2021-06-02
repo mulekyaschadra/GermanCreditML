@@ -1,0 +1,52 @@
+--- 
+title: "Analyse de GermanCredit pour les banques"
+author: "Schadra Ange Mulekya"
+date: "`r Sys.Date()`"
+site: bookdown::bookdown_site
+documentclass: book
+bibliography: [book.bib, packages.bib]
+biblio-style: apalike
+link-citations: yes
+description: "Ceci est mon premier travail dans la diffusion des données et des analyses faites dans R sous forme de livre accessible sur le net via GITHUB"
+---
+
+# introduction
+
+La demarche d' _analyse_ avec **R** est une étape importante du statisticien dans son travail .
+
+
+ce livre présente les analyses faite sur la base des données **Ferman Crédit** dans lequel nous abordons les méthodes der machine learning avec le **Tidymodels** package.
+
+
+Cgargeons donc les libraies néccaises
+```{r eval=FALSE, echo=FALSE,include=FALSE}
+install.packages("bookdown")
+# Cahrgeaons les packages
+library(tidyverse)
+library(tidymodels)
+library(DT)
+
+````
+
+Chargeons nos données 
+
+```{r eval=FALSE}
+library(caret) # pour ls donnes GermanCredit
+data("GermanCredit")
+```
+
+Remember each Rmd file contains one and only one chapter, and a chapter is defined by the first-level heading `#`.
+
+Vous trouverez les contenu de ce libre dans mon *github* : <https://github.com/schadramulekya/>.
+
+
+
+```{r include=FALSE}
+# automatically create a bib database for R packages
+knitr::write_bib(c(
+  .packages(), 'bookdown', 'knitr', 'rmarkdown'
+), 'packages.bib')
+```
+
+
+
