@@ -1,5 +1,5 @@
 --- 
-title: "Analyse de GermanCredit pour les banques"
+title: "Analyse de GermanCredit avec les methodes de Machine Learning"
 author: "Schadra Ange Mulekya"
 date: "`r Sys.Date()`"
 site: bookdown::bookdown_site
@@ -18,7 +18,7 @@ La demarche d' _analyse_ avec **R** est une étape importante du statisticien da
 ce livre présente les analyses faite sur la base des données **Ferman Crédit** dans lequel nous abordons les méthodes der machine learning avec le **Tidymodels** package.
 
 
-Cgargeons donc les libraies néccaises
+Chargeons donc les libraries néccasaires
 ```{r eval=FALSE, echo=FALSE,include=FALSE}
 install.packages("bookdown")
 # Cahrgeaons les packages

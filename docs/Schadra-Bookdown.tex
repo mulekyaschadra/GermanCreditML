@@ -36,7 +36,7 @@
 \IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
 \IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
 \hypersetup{
-  pdftitle={Analyse de GermanCredit pour les banques},
+  pdftitle={Analyse de GermanCredit avec les methodes de Machine Learning},
   pdfauthor={Schadra Ange Mulekya},
   hidelinks,
   pdfcreator={LaTeX via pandoc}}
@@ -115,9 +115,9 @@
 \usepackage[]{natbib}
 \bibliographystyle{apalike}
 
-\title{Analyse de GermanCredit pour les banques}
+\title{Analyse de GermanCredit avec les methodes de Machine Learning}
 \author{Schadra Ange Mulekya}
-\date{2021-06-01}
+\date{2021-06-02}
 
 \begin{document}
 \maketitle
@@ -133,7 +133,7 @@ La demarche d' \emph{analyse} avec \textbf{R} est une étape importante du stati
 
 ce livre présente les analyses faite sur la base des données \textbf{Ferman Crédit} dans lequel nous abordons les méthodes der machine learning avec le \textbf{Tidymodels} package.
 
-Cgargeons donc les libraies néccaises
+Chargeons donc les libraries néccasaires
 
 Chargeons nos données
 
@@ -246,144 +246,10 @@ You can write citations, too. For example, we are using the \textbf{bookdown} pa
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\FunctionTok{head}\NormalTok{(GermanCredit,}\DecValTok{5}\NormalTok{)}
+\FunctionTok{library}\NormalTok{(DT)}
+\CommentTok{\#datatable(GermanCredit,options = list(pageLength = 5))}
 \end{Highlighting}
 \end{Shaded}
-
-\begin{verbatim}
-##   Duration Amount InstallmentRatePercentage ResidenceDuration Age
-## 1        6   1169                         4                 4  67
-## 2       48   5951                         2                 2  22
-## 3       12   2096                         2                 3  49
-## 4       42   7882                         2                 4  45
-## 5       24   4870                         3                 4  53
-##   NumberExistingCredits NumberPeopleMaintenance Telephone ForeignWorker Class
-## 1                     2                       1         0             1  Good
-## 2                     1                       1         1             1   Bad
-## 3                     1                       2         1             1  Good
-## 4                     1                       2         1             1  Good
-## 5                     2                       2         1             1   Bad
-##   CheckingAccountStatus.lt.0 CheckingAccountStatus.0.to.200
-## 1                          1                              0
-## 2                          0                              1
-## 3                          0                              0
-## 4                          1                              0
-## 5                          1                              0
-##   CheckingAccountStatus.gt.200 CheckingAccountStatus.none
-## 1                            0                          0
-## 2                            0                          0
-## 3                            0                          1
-## 4                            0                          0
-## 5                            0                          0
-##   CreditHistory.NoCredit.AllPaid CreditHistory.ThisBank.AllPaid
-## 1                              0                              0
-## 2                              0                              0
-## 3                              0                              0
-## 4                              0                              0
-## 5                              0                              0
-##   CreditHistory.PaidDuly CreditHistory.Delay CreditHistory.Critical
-## 1                      0                   0                      1
-## 2                      1                   0                      0
-## 3                      0                   0                      1
-## 4                      1                   0                      0
-## 5                      0                   1                      0
-##   Purpose.NewCar Purpose.UsedCar Purpose.Furniture.Equipment
-## 1              0               0                           0
-## 2              0               0                           0
-## 3              0               0                           0
-## 4              0               0                           1
-## 5              1               0                           0
-##   Purpose.Radio.Television Purpose.DomesticAppliance Purpose.Repairs
-## 1                        1                         0               0
-## 2                        1                         0               0
-## 3                        0                         0               0
-## 4                        0                         0               0
-## 5                        0                         0               0
-##   Purpose.Education Purpose.Vacation Purpose.Retraining Purpose.Business
-## 1                 0                0                  0                0
-## 2                 0                0                  0                0
-## 3                 1                0                  0                0
-## 4                 0                0                  0                0
-## 5                 0                0                  0                0
-##   Purpose.Other SavingsAccountBonds.lt.100 SavingsAccountBonds.100.to.500
-## 1             0                          0                              0
-## 2             0                          1                              0
-## 3             0                          1                              0
-## 4             0                          1                              0
-## 5             0                          1                              0
-##   SavingsAccountBonds.500.to.1000 SavingsAccountBonds.gt.1000
-## 1                               0                           0
-## 2                               0                           0
-## 3                               0                           0
-## 4                               0                           0
-## 5                               0                           0
-##   SavingsAccountBonds.Unknown EmploymentDuration.lt.1 EmploymentDuration.1.to.4
-## 1                           1                       0                         0
-## 2                           0                       0                         1
-## 3                           0                       0                         0
-## 4                           0                       0                         0
-## 5                           0                       0                         1
-##   EmploymentDuration.4.to.7 EmploymentDuration.gt.7
-## 1                         0                       1
-## 2                         0                       0
-## 3                         1                       0
-## 4                         1                       0
-## 5                         0                       0
-##   EmploymentDuration.Unemployed Personal.Male.Divorced.Seperated
-## 1                             0                                0
-## 2                             0                                0
-## 3                             0                                0
-## 4                             0                                0
-## 5                             0                                0
-##   Personal.Female.NotSingle Personal.Male.Single Personal.Male.Married.Widowed
-## 1                         0                    1                             0
-## 2                         1                    0                             0
-## 3                         0                    1                             0
-## 4                         0                    1                             0
-## 5                         0                    1                             0
-##   Personal.Female.Single OtherDebtorsGuarantors.None
-## 1                      0                           1
-## 2                      0                           1
-## 3                      0                           1
-## 4                      0                           0
-## 5                      0                           1
-##   OtherDebtorsGuarantors.CoApplicant OtherDebtorsGuarantors.Guarantor
-## 1                                  0                                0
-## 2                                  0                                0
-## 3                                  0                                0
-## 4                                  0                                1
-## 5                                  0                                0
-##   Property.RealEstate Property.Insurance Property.CarOther Property.Unknown
-## 1                   1                  0                 0                0
-## 2                   1                  0                 0                0
-## 3                   1                  0                 0                0
-## 4                   0                  1                 0                0
-## 5                   0                  0                 0                1
-##   OtherInstallmentPlans.Bank OtherInstallmentPlans.Stores
-## 1                          0                            0
-## 2                          0                            0
-## 3                          0                            0
-## 4                          0                            0
-## 5                          0                            0
-##   OtherInstallmentPlans.None Housing.Rent Housing.Own Housing.ForFree
-## 1                          1            0           1               0
-## 2                          1            0           1               0
-## 3                          1            0           1               0
-## 4                          1            0           0               1
-## 5                          1            0           0               1
-##   Job.UnemployedUnskilled Job.UnskilledResident Job.SkilledEmployee
-## 1                       0                     0                   1
-## 2                       0                     0                   1
-## 3                       0                     1                   0
-## 4                       0                     0                   1
-## 5                       0                     0                   1
-##   Job.Management.SelfEmp.HighlyQualified
-## 1                                      0
-## 2                                      0
-## 3                                      0
-## 4                                      0
-## 5                                      0
-\end{verbatim}
 
 \hypertarget{literature}{%
 \chapter{Literature}\label{literature}}
