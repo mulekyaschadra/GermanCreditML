@@ -1,0 +1,129 @@
+--- 
+title: "Analyse de GermanCredit avec les methodes de Machine Learning"
+author: "Schadra Ange Mulekya"
+date: "`r Sys.Date()`"
+site: bookdown::bookdown_site
+documentclass: book
+bibliography: [book.bib, packages.bib]
+biblio-style: apalike
+link-citations: yes
+description: "Ceci est mon premier travail dans la diffusion des données et des analyses faites dans R sous forme de livre accessible sur le net via GITHUB"
+---
+
+# introduction
+
+La demarche d' _analyse_ avec **R** est une étape importante du statisticien dans son travail .
+
+
+ce livre présente les analyses faite sur la base des données **Ferman Crédit** dans lequel nous abordons les méthodes der machine learning avec le **Tidymodels** package.
+
+
+Chargeons donc les libraries néccasaires
+```{r eval=FALSE, echo=FALSE,include=FALSE}
+install.packages("bookdown")
+# Cahrgeaons les packages
+library(tidyverse)
+library(tidymodels)
+library(DT)
+
+````
+
+Chargeons nos données 
+
+```{r eval=FALSE}
+library(caret) # pour ls donnes GermanCredit
+data("GermanCredit")
+```
+
+Remember each Rmd file contains one and only one chapter, and a chapter is defined by the first-level heading `#`.
+
+Vous trouverez les contenu de ce libre dans mon *github* : <https://github.com/schadramulekya/>.
+
+
+
+```{r include=FALSE}
+# automatically create a bib database for R packages
+knitr::write_bib(c(
+  .packages(), 'bookdown', 'knitr', 'rmarkdown'
+), 'packages.bib')
+```
+
+
+
+
+<!--chapter:end:index.Rmd-->
+
+# Description de la base des données {#intro}
+
+Data from Dr. Hans Hofmann of the University of Hamburg.
+
+These data have two classes for the credit worthiness: good or bad. There are predictors related to attributes, such as: checking account status, duration, credit history, purpose of the loan, amount of the loan, savings accounts or bonds, employment duration, Installment rate in percentage of disposable income, personal information, other debtors/guarantors, residence duration, property, age, other installment plans, housing, number of existing credits, job information, Number of people being liable to provide maintenance for, telephone, and foreign worker status.
+
+Many of these predictors are discrete and have been expanded into several 0/1 indicator variables
+
+Source
+UCI Machine Learning Repository
+
+
+
+Reference a figure by its code chunk label with the `fig:` prefix
+
+
+```{r}
+library(caret)
+data("GermanCredit")
+```
+
+
+
+You can write citations, too. For example, we are using the **bookdown** package [@R-bookdown] in this sample book, which was built on top of R Markdown and **knitr** [@xie2015].
+
+
+
+
+```{r}
+library(DT)
+#datatable(GermanCredit,options = list(pageLength = 5))
+```
+
+```{r}
+datatable(GermanCredit,class = 'cell-border stripe')
+```
+
+
+<!--chapter:end:01-intro.Rmd-->
+
+# Literature
+
+Here is a review of existing methods.
+
+<!--chapter:end:02-literature.Rmd-->
+
+# Methods
+
+We describe our methods in this chapter.
+
+<!--chapter:end:03-method.Rmd-->
+
+# Applications
+
+Some _significant_ applications are demonstrated in this chapter.
+
+## Example one
+
+## Example two
+
+<!--chapter:end:04-application.Rmd-->
+
+# Final Words
+
+We have finished a nice book.
+
+<!--chapter:end:05-summary.Rmd-->
+
+`r if (knitr::is_html_output()) '
+# References {-}
+'`
+
+<!--chapter:end:06-references.Rmd-->
+
